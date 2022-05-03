@@ -1,8 +1,77 @@
+-- phpMyAdmin SQL Dump
+-- version 5.1.1
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: May 03, 2022 at 03:20 PM
+-- Server version: 10.4.22-MariaDB
+-- PHP Version: 8.1.2
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `fitwww`
+--
 
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla tabeli `przepisy`
+-- Table structure for table `komentarze`
+--
+
+CREATE TABLE `komentarze` (
+  `id` int(11) NOT NULL,
+  `idprzepisu` int(11) NOT NULL,
+  `login` varchar(20) NOT NULL,
+  `tresc` varchar(200) NOT NULL,
+  `awatar` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `komentarze`
+--
+
+INSERT INTO `komentarze` (`id`, `idprzepisu`, `login`, `tresc`, `awatar`) VALUES
+(60, 29, 'wojtek', 'Bardzo smaczne', 'awatary/Bez nazwy.png');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `oceny`
+--
+
+CREATE TABLE `oceny` (
+  `id` int(11) NOT NULL,
+  `login` varchar(50) NOT NULL,
+  `idprzepisu` int(11) NOT NULL,
+  `ocena` int(2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `oceny`
+--
+
+INSERT INTO `oceny` (`id`, `login`, `idprzepisu`, `ocena`) VALUES
+(36, 'l', 36, 1),
+(37, 'lonio103', 36, 5),
+(38, 'lonio103', 29, 3),
+(39, 'lonio103', 37, 3),
+(40, 'lonio103', 14, 2),
+(41, 'lonio103', 25, 5),
+(42, 'Harnas', 14, 4);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `przepisy`
 --
 
 CREATE TABLE `przepisy` (
@@ -25,7 +94,7 @@ CREATE TABLE `przepisy` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
 --
--- Zrzut danych tabeli `przepisy`
+-- Dumping data for table `przepisy`
 --
 
 INSERT INTO `przepisy` (`id`, `nazwa`, `obrazek`, `skladnik1`, `ilosc1`, `krok1`, `krok2`, `krok3`, `krok4`, `krok5`, `krok6`, `krok7`, `krok8`, `krok9`, `krok10`, `kategoria`) VALUES
@@ -53,3 +122,155 @@ INSERT INTO `przepisy` (`id`, `nazwa`, `obrazek`, `skladnik1`, `ilosc1`, `krok1`
 (50, ' Bezglutenowe brownie', 'bezglutenowebrownie.webp', '<p></p>\r\n\r\n<p></p>\r\n\r\n<p></p>\r\n\r\n<p></p>\r\n\r\n<p></p>', '<p></p>\r\n\r\n<p></p>\r\n\r\n<p></p>\r\n\r\n<p></p>\r\n\r\n<p></p>', 'Krok 1\r\nW rondlu rozpuść masło. Następnie zdejmij z ognia i dodaj 2/3 posiekanej czekolady. Mieszaj, aż się rozpuści. Odstaw na bok.', 'Krok 2\r\nW misce wymieszaj obie mąki i sól. Jajka lekko ubij z cukrem pudrem.', 'Krok 3\r\nDo masy jajecznej dodaj przygotowaną masę czekoladową i wymieszaj mikserem.', 'Krok 4\r\nNastępnie ciągle mieszając, dodaj mieszaninę mąk, pozostałą 1/3 część czekolady i suszoną żurawinę.', 'Krok 5\r\nDo formy wyłożonej papierem do pieczenie przełóż ciasto i piecz w piekarniku 35 minut w temperaturze 180 st. C.', 'Krok 6\r\nPo wyjęciu z piekarnika posyp żurawiną ora', '', '', '', '', 'ciastobezlaktozy'),
 (51, ' Bezglutenowe ciasto ze śliwkami', 'dsc39937017341592471584000.webp', '<p></p>\r\n\r\n<p></p>\r\n\r\n<p></p>\r\n\r\n<p></p>\r\n\r\n<p></p>', '<p></p>\r\n\r\n<p></p>\r\n\r\n<p></p>\r\n\r\n<p></p>\r\n\r\n<p></p>', 'Krok 1 \r\nMasło ucieramy z cukrem na puszystą masę.\r\n\r\n', 'Krok 2\r\nOddzielamy białka od żółtek. Dodajemy do masy po jednym żółtku cały czas ucierając', 'Krok 3\r\nOrzechy włoskie mielimy na mąkę. Dodajemy do masy jajecznej. Mąkę ryżowa mieszamy z cynamonem oraz proszkiem do pieczenia i również dodajemy do ciasta.', 'Krok 4\r\nBiałka ubijamy na sztywną piane. Dodajemy do ciasta nie mieszając zbyt długo.\r\n\r\n', 'Krok 5\r\nPrzelewamy ciasto do formy wyłożonej papierem do pieczenia.\r\n\r\n', 'Krok 6\r\nZ wierzchu dekorujemy połówkami śliwek. Pi', '', '', '', '', 'ciastobezlaktozy'),
 (58, ' Płatki owsiane na mleku z jabłkiem', 'platkiowsiane.webp', '<p>płatki owsiane zwykłe</p>\r\n<p>mleko 1,5% tłuszczu</p>\r\n<p>małe jabłko</p>\r\n<p>cynamon</p>', '<p>40 gramów</p>\r\n<p>125 mililitrów</p>\r\n<p>1 sztuka</p>\r\n<p>1 łyżeczka</p>', 'Krok 1\r\n<p> Płatki zalać wrzącą wodą do poziomu powierzchni płatków i odczekać kilka minut, aż zmiękną.</p>', 'Krok 2\r\n<p>Dodać mleko, pokrojone w kostkę kawałki jabłka, wymieszać i posypać cynamonem.</p>\r\n\r\n', '', '', '', '', '', '', '', '', '1200sniadanie');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `uzytkownicy`
+--
+
+CREATE TABLE `uzytkownicy` (
+  `id` int(11) NOT NULL,
+  `imie` varchar(50) COLLATE utf8_polish_ci NOT NULL,
+  `nazwisko` varchar(200) COLLATE utf8_polish_ci NOT NULL,
+  `email` varchar(50) COLLATE utf8_polish_ci NOT NULL,
+  `login` varchar(200) COLLATE utf8_polish_ci NOT NULL,
+  `haslo` varchar(50) COLLATE utf8_polish_ci NOT NULL,
+  `awatar` varchar(200) COLLATE utf8_polish_ci DEFAULT NULL,
+  `rola` varchar(50) COLLATE utf8_polish_ci NOT NULL DEFAULT 'U'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
+
+--
+-- Dumping data for table `uzytkownicy`
+--
+
+INSERT INTO `uzytkownicy` (`id`, `imie`, `nazwisko`, `email`, `login`, `haslo`, `awatar`, `rola`) VALUES
+(56, 'Jan', 'Nowak', 'jan@gmail.com', 'jan', '12345678', 'awatary/Bez nazwy.png', 'U'),
+(57, 'Wojtek', 'Nowak', 'wojtek@gmail.com', 'Harnas', '12345678', 'awatary/Przechwytywanie.PNG', 'U');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `wiadomosci`
+--
+
+CREATE TABLE `wiadomosci` (
+  `id` int(11) NOT NULL,
+  `imie` varchar(20) NOT NULL,
+  `email` varchar(20) NOT NULL,
+  `telefon` int(9) NOT NULL,
+  `tresc` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `wiadomosci`
+--
+
+INSERT INTO `wiadomosci` (`id`, `imie`, `email`, `telefon`, `tresc`) VALUES
+(14, 'Krystian', 'harnas123@gmail.com', 123345678, 'Dzień dobry');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `zgloszenia`
+--
+
+CREATE TABLE `zgloszenia` (
+  `id` int(11) NOT NULL,
+  `login` varchar(50) NOT NULL,
+  `idprzepisu` int(11) NOT NULL,
+  `tresc` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `zgloszenia`
+--
+
+INSERT INTO `zgloszenia` (`id`, `login`, `idprzepisu`, `tresc`) VALUES
+(14, 'Wojtek', 29, 'Bardzo smaczny przepis'),
+(15, 'Krystian', 25, 'Smaczne');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `komentarze`
+--
+ALTER TABLE `komentarze`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `oceny`
+--
+ALTER TABLE `oceny`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `przepisy`
+--
+ALTER TABLE `przepisy`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `uzytkownicy`
+--
+ALTER TABLE `uzytkownicy`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `wiadomosci`
+--
+ALTER TABLE `wiadomosci`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `zgloszenia`
+--
+ALTER TABLE `zgloszenia`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `komentarze`
+--
+ALTER TABLE `komentarze`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
+
+--
+-- AUTO_INCREMENT for table `oceny`
+--
+ALTER TABLE `oceny`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+
+--
+-- AUTO_INCREMENT for table `przepisy`
+--
+ALTER TABLE `przepisy`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
+
+--
+-- AUTO_INCREMENT for table `uzytkownicy`
+--
+ALTER TABLE `uzytkownicy`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+
+--
+-- AUTO_INCREMENT for table `wiadomosci`
+--
+ALTER TABLE `wiadomosci`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT for table `zgloszenia`
+--
+ALTER TABLE `zgloszenia`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
